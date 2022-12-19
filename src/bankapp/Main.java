@@ -11,7 +11,6 @@ public class Main {
   public static void main(String[] args) throws IOException {
     CustomerFileHandler.getInstance().initialize();
     homepage();
-
   }
 
   public static void homepage() throws IOException {

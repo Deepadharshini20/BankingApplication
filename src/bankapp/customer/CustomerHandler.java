@@ -41,8 +41,8 @@ public class CustomerHandler extends Encrption{
     Bank.customers.add(c);
     Bank.customerMap.put(Bank.customerId, c);
 
-    CustomerFileHandler.getInstance().customerFileAdd(c);
-    logTranscation(Bank.customerId);
+    CustomerFileHandler.getInstance().customerFileAdd(c); // update in file 
+    logTranscation(Bank.customerId); // creating transction file for each customer
 
     System.out.println("Successfully registered the new customer");
   }

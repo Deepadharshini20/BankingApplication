@@ -7,8 +7,8 @@ import java.util.Scanner;
 import bankapp.customer.Customer;
 
 public class Bank {
-  public static ArrayList<Customer> customers= new ArrayList<>();
-  public static HashMap<Integer,Customer> customerMap = new HashMap<>(); 
+  public static ArrayList<Customer> customers= new ArrayList<>(); // List of customers
+  public static HashMap<Integer,Customer> customerMap = new HashMap<>(); // mapping id and customer in hashmap 
   
   public static Scanner in = new Scanner(System.in);
 

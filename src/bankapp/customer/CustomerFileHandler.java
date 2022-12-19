@@ -16,30 +16,28 @@ public class CustomerFileHandler {
   private static final String fileName = "C:/Users/dd/Documents/Java Application/Banking-Application/src/bankapp/bankdb.txt";
 
   static CustomerFileHandler handler;
-  public static CustomerFileHandler getInstance() {
-    if(handler==null)
+  public static CustomerFileHandler getInstance() { // singleton object
+    if(handler==null) // if object is not created then we can create new onject for this class
       handler = new CustomerFileHandler();
     return handler;
   }
   public void initialize() throws IOException{
     ArrayList<Customer> customers = Bank.customers;
-    File file = new File(fileName);
+    File file = new File(fileName); // get the file using file path
 
-    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-      String customerInfo = br.readLine();
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) { // reading all content
+      String customerInfo = br.readLine(); // reading single line
       while(customerInfo!=null){
-        Customer customer = convertStringToCustomer(customerInfo);
-        customers.add(customer);
-        Bank.customerMap.put(customer.getCustomerId(), customer);
-        customerInfo = br.readLine();
+        Customer customer = convertStringToCustomer(customerInfo); // converting to customer
+        customers.add(customer); // add cutomer to the list 
+        Bank.customerMap.put(customer.getCustomerId(), customer); // add the id and customer to map as well
+        customerInfo = br.readLine(); // for reading next line
       }
     }
     
     Bank.customers = customers;
     Bank.customerId = customers.get(customers.size()-1).getCustomerId();
     Bank.accountNum = customers.get(customers.size()-1).getAccNum();
-
-
   }
   private static Customer convertStringToCustomer(String customerInfo) {
     String[] cusDetails = customerInfo.split(" ");

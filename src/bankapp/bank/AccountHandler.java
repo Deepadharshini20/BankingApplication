@@ -1,24 +1,24 @@
 package bankapp.bank;
 
-
 import java.io.IOException;
 
 import bankapp.Transcation.TranscationHandler;
 import bankapp.customer.Customer;
 
 public class AccountHandler {
-  static TranscationHandler tHandler = new TranscationHandler();
+  static TranscationHandler tHandler = new TranscationHandler(); // static object for this class
 
   public void deposit(int id, double amount) throws IOException {
-    Customer c = Bank.customerMap.get(id);
+    Customer c = Bank.customerMap.get(id); // get customer in map using id
     if (c == null)
       System.out.println("The customer id is not found..Deposit cancelled");
 
     double updatedAmount = c.getBalance() + amount;
     c.setBalance(updatedAmount);
-    Bank.customerMap.put(id, c);
+    Bank.customerMap.put(id, c); // set the updated customer in map
 
-    tHandler.addTranscation(id, "deposit", amount, c.getBalance());
+    tHandler.addTranscation(id, "deposit", amount, c.getBalance()); // add transaction details in particular customer
+                                                                    // transcation history(file)
 
     System.out.println(amount + " was deposited in this account");
 
@@ -30,7 +30,9 @@ public class AccountHandler {
       System.out.println("The customer id is not found..withdraw cancelled");
 
     double updatedAmount = c.getBalance() - amount;
-    if (c.getBalance() >= amount && updatedAmount > 1000) {
+    if (c.getBalance() >= amount && updatedAmount > 1000) { // check withdraw amount less than or eequal to current
+                                                            // balance and if condition is true,check updated balance is
+                                                            // greater than 1000. because minimum balance is 1000.
       c.setBalance(updatedAmount);
       Bank.customerMap.put(id, c);
 
@@ -40,7 +42,7 @@ public class AccountHandler {
     } else {
       if (updatedAmount > 1000) {
         System.out.println("Your bank balance is less than 1000");
-        
+
       } else
         System.out.println("Insuffiecnt amount");
     }

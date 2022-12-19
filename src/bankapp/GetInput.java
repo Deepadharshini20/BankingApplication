@@ -35,11 +35,11 @@ public class GetInput {
   }
   public static String getPassword() {
     System.out.println("Enter Password");
-    String pwd = Bank.in.nextLine();
+    String pwd = in.nextLine();
 
     while (true) {
       System.out.println("Re-enter password");
-      String reEnterPwd = Bank.in.nextLine();
+      String reEnterPwd = in.nextLine();
 
       if (!pwd.equals(reEnterPwd))
         System.out.println("Password is incorrect");
